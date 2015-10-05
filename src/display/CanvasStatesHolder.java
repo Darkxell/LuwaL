@@ -1,6 +1,7 @@
 package display;
 
 import display.states.LevelChooserState;
+import display.states.LevelEndState;
 import display.states.LevelState;
 import display.states.MenuState;
 
@@ -10,7 +11,9 @@ public abstract class CanvasStatesHolder {
     public static final MenuState MENUSTATE = new MenuState();
 
     public static final LevelChooserState LEVELCHOOSERSTATE = new LevelChooserState();
-    
+
     public static final LevelState LEVELSTATE = new LevelState();
+
+    public static final LevelEndState LEVELENDSTATE = new LevelEndState();
 
 }

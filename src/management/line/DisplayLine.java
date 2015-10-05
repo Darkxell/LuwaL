@@ -14,6 +14,10 @@ import main.Main;
  */
 public abstract class DisplayLine {
 
+    /**
+     * A constant value that sets how much rotation frames will be actives in a
+     * normal rotation dash.
+     */
     private static final int ROTATOR = 512;
     private static final int widthpx = 30;
 
@@ -45,29 +49,43 @@ public abstract class DisplayLine {
 	AffineTransform old = g2.getTransform();
 	g2.transform(t);
 	g2.fill(r);
+	// Draws the level on the line rectangle.
 	try {
 	    double heightpx = rectheight / 9.0;
 	    if (Main.frame.getFullCanvas().state == CanvasStatesHolder.LEVELSTATE) {
+		g2.setColor(CurrentLevelHolder.PlayerGhostColor);
+		g2.fillRect(
+			Main.frame.getWidth() / 3,
+			(int) (rectY + (CurrentLevelHolder.playerY * heightpx) - (heightpx / 2)),
+			(int) heightpx, (int) heightpx);
+
 		g2.setColor(CurrentLevelHolder.PlayerColor);
 		g2.fillRect(
 			Main.frame.getWidth() / 3,
 			(int) (rectY
-				+ ((CurrentLevelHolder.playerY) * heightpx) - (heightpx / 2)),
+				+ ((CurrentLevelHolder.isSliding ? (CurrentLevelHolder.playerSide ? CurrentLevelHolder.playerY + 2
+					: CurrentLevelHolder.playerY - 2)
+					: CurrentLevelHolder.playerY) * heightpx) - (heightpx / 2)),
 			(int) heightpx, (int) heightpx);
 	    }
 	    g2.setColor(CurrentLevelHolder.PlatformColor);
 	    for (int i = 0; i < CurrentLevelHolder.currentLevel
 		    .getLinesAmmount(); i++) {
+		int xline = (int) ((Main.frame.getWidth() / 3)
+			+ ((double) CurrentLevelHolder.currentLevel.getLine(i)
+				.getX() * widthpx) - ((double) CurrentLevelHolder.playerX * widthpx));
 		g2.fillRect(
-			(int) ((Main.frame.getWidth() / 3)
-				+ ((double) CurrentLevelHolder.currentLevel
-					.getLine(i).getX() * widthpx) - ((double) CurrentLevelHolder.playerX * widthpx)),
+			xline,
 			(int) (rectY
 				+ ((CurrentLevelHolder.currentLevel.getLine(i)
 					.getY()) * heightpx) - (heightpx / 2)),
 			CurrentLevelHolder.currentLevel.getLine(i).getLength()
 				* widthpx + 2, (int) heightpx);
-		// TODO : display the spikes here.
+
+		for (int j = 0; j < array.length; j++) {
+
+		}
+
 	    }
 	} catch (Exception e) {
 	}
@@ -104,14 +122,14 @@ public abstract class DisplayLine {
 	    rectY--;
 	// rotatorLaner
 	if (rotatorLaner) {
-	    rotation += 0.3;
+	    rotation += CurrentLevelHolder.rotationspeed;
 	    if (dasher > 0) {
 		int torotate = dasher / 10;
 		rotation += torotate;
 		dasher = dasher / 2;
 	    }
 	} else {
-	    rotation -= 0.3;
+	    rotation -= CurrentLevelHolder.rotationspeed;
 	    if (dasher > 0) {
 		int torotate = dasher / 10;
 		rotation -= torotate;

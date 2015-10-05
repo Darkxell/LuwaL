@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import main.Main;
+import management.line.CurrentLevelHolder;
 import management.line.DisplayLine;
 import ressources.Palette;
 import ressources.Res;
@@ -34,7 +35,8 @@ public class MenuState implements FullCanvasState {
 
     @Override
     public void update() {
-
+	CurrentLevelHolder.currentLevel = null;
+	Palette.setcurrentlevelcolors(0);
     }
 
     @Override
@@ -67,8 +69,7 @@ public class MenuState implements FullCanvasState {
 	if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 	    DisplayLine.prepareRotativeDash();
 	    Main.frame.getFullCanvas().state = CanvasStatesHolder.LEVELCHOOSERSTATE;
-	}
-	if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+	} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 	    System.exit(0);
     }
 

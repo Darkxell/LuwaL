@@ -19,6 +19,7 @@ public class LevelChooserState implements FullCanvasState {
 
     public static final int TYPE_CLASSIC = 0;
     public static final int TYPE_SET = 1;
+    public static final int TYPE_SURVIVAL = 2; /*Destruction,Armagedon,Apocalypse*/;
     /** The type of level selected. */
     private int leveltype;
     /** The level number of the selected type. */
@@ -40,12 +41,16 @@ public class LevelChooserState implements FullCanvasState {
 	    text = "Set".toCharArray();
 	    width = metrics.stringWidth("Set");
 	    break;
+	case TYPE_SURVIVAL:
+	    text = "Survival".toCharArray();
+	    width = metrics.stringWidth("Survival");
+	    break;
 	default:
 	    text = "Unknown".toCharArray();
 	    width = metrics.stringWidth("Unknown");
 	    break;
 	}
-	g.setColor(Palette.LIGHT_GREY);
+	g.setColor(CurrentLevelHolder.LevelFontColor);
 	g.drawChars(text, 0, text.length, (Main.frame.getWidth() / 2)
 		- (width / 2), Main.frame.getHeight() / 2);
 	// Starts to draw the level Name.
@@ -53,6 +58,7 @@ public class LevelChooserState implements FullCanvasState {
 	metrics = g.getFontMetrics();
 	switch (leveltype) {
 	case TYPE_CLASSIC:
+	    Palette.setcurrentlevelcolors(levelnumber+1);
 	    switch (levelnumber) {
 	    case 0:
 		drawlevelname(g, "Level 1 : who needs tutorials?");
@@ -77,6 +83,7 @@ public class LevelChooserState implements FullCanvasState {
 	    }
 	    break;
 	case TYPE_SET:
+	    Palette.setcurrentlevelcolors(0);
 	    switch (levelnumber) {
 	    case 0:
 		drawlevelname(g, "Level 1 : name");
@@ -92,12 +99,30 @@ public class LevelChooserState implements FullCanvasState {
 		break;
 	    }
 	    break;
+	case TYPE_SURVIVAL:
+	    Palette.setcurrentlevelcolors(0);
+	    switch (levelnumber) {
+	    case 0:
+		drawlevelname(g, "Destruction");
+		break;
+	    case 1:
+		drawlevelname(g, "Armagedon");
+		break;
+	    case 2:
+		drawlevelname(g, "Apocalypse");
+		break;
+	    default:
+		width = metrics.stringWidth("Unknown level");
+		text = "Unknown level".toCharArray();
+		break;
+	    }
+	    break;
 	}
     }
 
     @Override
     public void update() {
-
+	CurrentLevelHolder.currentLevel = null;
     }
 
     @Override
@@ -148,7 +173,7 @@ public class LevelChooserState implements FullCanvasState {
 	} else if (e.getKeyCode() == KeyEvent.VK_DOWN
 		|| e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
 	    DisplayLine.prepareRotativeDash();
-	    if (this.leveltype == 1)
+	    if (this.leveltype == 2)
 		this.leveltype = 0;
 	    else
 		this.leveltype++;
@@ -165,6 +190,7 @@ public class LevelChooserState implements FullCanvasState {
 	    // TODO : set an appropriate level here.
 	    CurrentLevelHolder.currentLevel = new Level(PatternsHolder.PATTERNS);
 	    Main.frame.getFullCanvas().state = CanvasStatesHolder.LEVELSTATE;
+	    
 
 	}
     }
@@ -194,6 +220,8 @@ public class LevelChooserState implements FullCanvasState {
 	case TYPE_CLASSIC:
 	    return 5;
 	case TYPE_SET:
+	    return 3;
+	case TYPE_SURVIVAL:
 	    return 3;
 	default:
 	    return 0;

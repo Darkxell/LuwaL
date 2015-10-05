@@ -1,5 +1,7 @@
 package management;
 
+import utils.SpikeUtility;
+
 public class Line {
 
     /** The horisontal offset of the line start in the level. */
@@ -11,6 +13,10 @@ public class Line {
     /** The spikes on the line */
     private Spike[] spikes;
 
+    /**
+     * Default Line constructor. The created line has a <code>null</code> spike
+     * array.
+     */
     public Line(int x, int y, int length) {
 	this.length = length;
 	this.posX = x;
@@ -18,14 +24,20 @@ public class Line {
     }
 
     /**
-     * <code>posX,posY,length</code><br/>
+     * <code>posX,posY,length:SPIKECODE</code><br/>
      * Creates a Line object using the previously displayed String pattern.
      */
     public Line(String lineCode) {
-	String[] args = lineCode.split(",");
+	String[] uncoded = lineCode.split(":");
+
+	String[] args = uncoded[0].split(",");
 	this.posX = Integer.parseInt(args[0]);
 	this.posY = Integer.parseInt(args[1]);
 	this.length = Integer.parseInt(args[2]);
+	try {
+	    this.spikes = SpikeUtility.createSpikeArray(uncoded[1]);
+	} catch (Exception e) {
+	}
     }
 
     public Line(int x, int y, int length, Spike[] spikes) {
@@ -33,6 +45,10 @@ public class Line {
 	this.spikes = spikes;
     }
 
+    /**
+     * Gets the raw spikes array of the lines. The returned spikes array is
+     * relative to the line display position.
+     */
     public Spike[] getSpikes() {
 	return spikes;
     }

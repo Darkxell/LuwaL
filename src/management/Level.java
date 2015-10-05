@@ -17,7 +17,7 @@ public class Level {
 
     /** Creates a random level using an array of patterns. */
     public Level(LinePattern[] p) {
-	Line[] lines = new Line[] {new Line("-20,0,20")};
+	Line[] lines = new Line[] {new Line(-40,0,40)};
 	int offset = 0;
 	while (offset < 10000) {
 	    LinePattern toadd = p[(int) (Math.random() * (p.length))];
