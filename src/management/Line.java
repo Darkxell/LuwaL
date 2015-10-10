@@ -21,6 +21,7 @@ public class Line {
 	this.length = length;
 	this.posX = x;
 	this.posY = y;
+	this.spikes = new Spike[0];
     }
 
     /**
@@ -50,19 +51,19 @@ public class Line {
      * relative to the line display position.
      */
     public Spike[] getSpikes() {
-	return spikes;
+	return this.spikes;
     }
 
     public int getX() {
-	return posX;
+	return this.posX;
     }
 
     public int getY() {
-	return posY;
+	return this.posY;
     }
 
     public int getLength() {
-	return length;
+	return this.length;
     }
 
     public Line cloneToOffset(int offset) {

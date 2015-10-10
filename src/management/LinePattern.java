@@ -2,14 +2,17 @@ package management;
 
 public class LinePattern {
 
-    /** the length of the pattern. */
+    /** The length of the pattern. */
     private int length;
-    /** the lines inside the pattern. */
+    /** The lines inside the pattern. */
     private Line[] lines;
+    /** The pattern id in the pattern list. */
+    private int id;
 
     /** Creates a Pattern using the code of the lines. */
-    public LinePattern(int length, String[] lines) {
+    public LinePattern(int id, int length, String[] lines) {
 	this.length = length;
+	this.id = id;
 	Line[] content = new Line[lines.length];
 	for (int i = 0; i < content.length; i++)
 	    content[i] = new Line(lines[i]);
@@ -27,6 +30,13 @@ public class LinePattern {
      */
     public Line[] getLines() {
 	return this.lines;
+    }
+
+    /**
+     * Gets the <code>ID</code> of the pattern.
+     */
+    public int getID() {
+	return this.id;
     }
 
 }

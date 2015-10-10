@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import ressources.Res;
 import main.Main;
 import management.Level;
-import management.PatternsHolder;
+import management.leveldesign.PatternsHolder;
 import management.line.CurrentLevelHolder;
 import management.line.DisplayLine;
 import display.CanvasStatesHolder;
@@ -91,7 +91,7 @@ public class LevelEndState implements FullCanvasState {
 	if (e.getKeyCode() == KeyEvent.VK_SPACE && panneloffset == 0) {
 	    DisplayLine.prepareRotativeDash();
 	    CurrentLevelHolder.time = 0;
-	    CurrentLevelHolder.playerX = 0;
+	    CurrentLevelHolder.playerX = -20;
 	    CurrentLevelHolder.playerY = 1;
 	    CurrentLevelHolder.playerSide = false;
 	    CurrentLevelHolder.isSliding = false;

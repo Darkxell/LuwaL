@@ -10,4 +10,12 @@ public class ArrayUtil {
 	array2[array.length] = toadd;
 	return array2;
     }
+
+    /** Returns true if the array includes the value. */
+    public static boolean arrayInclude(int[] array, int value) {
+	for (int i = 0; i < array.length; i++)
+	    if (array[i] == value)
+		return true;
+	return false;
+    }
 }

@@ -8,8 +8,7 @@ import java.awt.event.MouseEvent;
 import ressources.Palette;
 import ressources.Res;
 import main.Main;
-import management.Level;
-import management.PatternsHolder;
+import management.leveldesign.LevelManager;
 import management.line.CurrentLevelHolder;
 import management.line.DisplayLine;
 import display.CanvasStatesHolder;
@@ -19,7 +18,9 @@ public class LevelChooserState implements FullCanvasState {
 
     public static final int TYPE_CLASSIC = 0;
     public static final int TYPE_SET = 1;
-    public static final int TYPE_SURVIVAL = 2; /*Destruction,Armagedon,Apocalypse*/;
+    public static final int TYPE_SURVIVAL = 2; /*
+					        * Destruction,Armagedon,Apocalypse
+					        */;
     /** The type of level selected. */
     private int leveltype;
     /** The level number of the selected type. */
@@ -58,7 +59,7 @@ public class LevelChooserState implements FullCanvasState {
 	metrics = g.getFontMetrics();
 	switch (leveltype) {
 	case TYPE_CLASSIC:
-	    Palette.setcurrentlevelcolors(levelnumber+1);
+	    Palette.setcurrentlevelcolors(levelnumber + 1);
 	    switch (levelnumber) {
 	    case 0:
 		drawlevelname(g, "Level 1 : who needs tutorials?");
@@ -187,11 +188,9 @@ public class LevelChooserState implements FullCanvasState {
 		this.leveltype--;
 	    this.levelnumber = 0;
 	} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-	    // TODO : set an appropriate level here.
-	    CurrentLevelHolder.currentLevel = new Level(PatternsHolder.PATTERNS);
-	    Main.frame.getFullCanvas().state = CanvasStatesHolder.LEVELSTATE;
-	    
-
+	    if (LevelManager
+		    .setCurrentLevelTo(this.leveltype, this.levelnumber))
+		Main.frame.getFullCanvas().state = CanvasStatesHolder.LEVELSTATE;
 	}
     }
 

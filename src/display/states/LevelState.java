@@ -42,9 +42,42 @@ public class LevelState implements FullCanvasState {
 
     }
 
-    /** Returns true if the player is on spikes at the moment. */
+    /**
+     * Returns true if the player is on spikes at the moment. This method checks
+     * all the lines to see if the player X position fits the line position. if
+     * it does, checks all the spikes of the line to see if the player is on one
+     * of them. Doesn't check the other lines if the player is found on a spike.
+     * 
+     * @return <strong>True</strong> if and only if the player is on at least
+     *         one spike on a checked line.
+     */
     private boolean isPlayerOnSpike() {
-	// TODO
+	for (int i = 0; i < CurrentLevelHolder.currentLevel.getLinesAmmount(); i++) {
+	    if (CurrentLevelHolder.currentLevel.getLine(i).getX() < CurrentLevelHolder.playerX
+		    && CurrentLevelHolder.currentLevel.getLine(i).getX()
+			    + CurrentLevelHolder.currentLevel.getLine(i)
+				    .getLength() > CurrentLevelHolder.playerX) {
+		for (int j = 0; j < CurrentLevelHolder.currentLevel.getLine(i)
+			.getSpikes().length; j++) {
+		    if (CurrentLevelHolder.currentLevel.getLine(i).getX()
+			    + CurrentLevelHolder.currentLevel.getLine(i)
+				    .getSpikes()[j].getOffset() < CurrentLevelHolder.playerX
+			    && CurrentLevelHolder.currentLevel.getLine(i)
+				    .getX()
+				    + CurrentLevelHolder.currentLevel
+					    .getLine(i).getSpikes()[j]
+					    .getOffset()
+				    + CurrentLevelHolder.currentLevel
+					    .getLine(i).getSpikes()[j]
+					    .getWidth() > CurrentLevelHolder.playerX
+			    && (CurrentLevelHolder.currentLevel.getLine(i)
+				    .getSpikes()[j].getSide() == CurrentLevelHolder.playerSide ? !CurrentLevelHolder.isSliding
+				    : CurrentLevelHolder.isSliding)) {
+			return true;
+		    }
+		}
+	    }
+	}
 	return false;
     }
 
@@ -112,7 +145,8 @@ public class LevelState implements FullCanvasState {
 
     @Override
     public void keyPressed(KeyEvent e) {
-	if (e.getKeyCode() == KeyEvent.VK_SPACE && !CurrentLevelHolder.isSliding) {
+	if (e.getKeyCode() == KeyEvent.VK_SPACE
+		&& !CurrentLevelHolder.isSliding) {
 	    CurrentLevelHolder.isSliding = true;
 	    CurrentLevelHolder.playerSide = !CurrentLevelHolder.playerSide;
 	}

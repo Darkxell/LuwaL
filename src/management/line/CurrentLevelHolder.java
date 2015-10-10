@@ -27,7 +27,7 @@ public abstract class CurrentLevelHolder {
      */
     public static Level currentLevel = null;
     /** The X position of the player in the level. */
-    public static double playerX = 0;
+    public static double playerX = -20;
     /** The Y position of the player in the level. */
     public static double playerY = 1;
     /**

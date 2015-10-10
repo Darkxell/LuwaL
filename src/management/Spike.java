@@ -23,13 +23,19 @@ public class Spike {
 	this.side = side;
     }
 
-    /** Default Skike constructor with additionnal spike width. */
+    /** Default Spike constructor with additionnal spike width. */
     public Spike(double offset, boolean side, double spikewidth) {
 	this(offset, side);
 	this.spikewidth = spikewidth;
 
     }
 
+    /**
+     * Returns the side of the spike relatively to the line.<br/>
+     * <br/>
+     * Is <code>true</code> if the spike is on the line, <code>false</code> if
+     * the spike is upside down under it.
+     */
     public boolean getSide() {
 	return this.side;
     }

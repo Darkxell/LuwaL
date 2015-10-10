@@ -2,7 +2,7 @@ package main;
 
 import display.FullFrame;
 
-/** Main launching class. */
+/** Main launching class. Pretty much nothing here. */
 public abstract class Main {
 
     /** Public pointer to the Fullframe object used to display the entire game. */

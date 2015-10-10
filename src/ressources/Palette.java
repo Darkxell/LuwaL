@@ -14,7 +14,7 @@ public abstract class Palette {
     public static final Color L1_LineColor = new Color(130, 205, 225);
     public static final Color L1_BackgroundColor = new Color(235, 255, 255);
     public static final Color L1_PlatformColor = new Color(225, 255, 255);
-    public static final Color L1_SpikesColor = new Color(73, 88, 224);
+    public static final Color L1_SpikesColor = new Color(225, 255, 255);
     public static final Color L1_PlayerColor = new Color(114, 111, 251);
     public static final Color L1_PlayerGhostColor = new Color(205, 235, 235);
     public static final Color L1_LevelFontColor = new Color(103, 118, 254);
@@ -38,7 +38,7 @@ public abstract class Palette {
     public static final Color L4_LineColor = new Color(130, 205, 225);
     public static final Color L4_BackgroundColor = new Color(0, 0, 0);
     public static final Color L4_PlatformColor = new Color(225, 255, 255);
-    public static final Color L4_SpikesColor = new Color(73, 88, 224);
+    public static final Color L4_SpikesColor = new Color(225, 255, 255);
     public static final Color L4_PlayerColor = new Color(114, 111, 251);
     public static final Color L4_PlayerGhostColor = new Color(205, 235, 235);
     public static final Color L4_LevelFontColor = new Color(103, 118, 254);

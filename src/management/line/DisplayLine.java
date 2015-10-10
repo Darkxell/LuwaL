@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 
 import display.CanvasStatesHolder;
 import main.Main;
+import management.Spike;
 
 /**
  * Static class that holds the line position and display methods to print it.
@@ -68,24 +69,37 @@ public abstract class DisplayLine {
 					: CurrentLevelHolder.playerY) * heightpx) - (heightpx / 2)),
 			(int) heightpx, (int) heightpx);
 	    }
-	    g2.setColor(CurrentLevelHolder.PlatformColor);
 	    for (int i = 0; i < CurrentLevelHolder.currentLevel
 		    .getLinesAmmount(); i++) {
 		int xline = (int) ((Main.frame.getWidth() / 3)
 			+ ((double) CurrentLevelHolder.currentLevel.getLine(i)
 				.getX() * widthpx) - ((double) CurrentLevelHolder.playerX * widthpx));
-		g2.fillRect(
-			xline,
-			(int) (rectY
-				+ ((CurrentLevelHolder.currentLevel.getLine(i)
-					.getY()) * heightpx) - (heightpx / 2)),
-			CurrentLevelHolder.currentLevel.getLine(i).getLength()
-				* widthpx + 2, (int) heightpx);
+		int yline = (int) (rectY
+			+ ((CurrentLevelHolder.currentLevel.getLine(i).getY()) * heightpx) - (heightpx / 2));
+		g2.setColor(CurrentLevelHolder.PlatformColor);
+		g2.fillRect(xline, yline - 2, CurrentLevelHolder.currentLevel
+			.getLine(i).getLength() * widthpx + 2,
+			(int) heightpx + 4);
 
-		for (int j = 0; j < array.length; j++) {
+		try {
+		    for (int j = 0; j < CurrentLevelHolder.currentLevel
+			    .getLine(i).getSpikes().length; j++) {
+			try {
+			    Spike s = CurrentLevelHolder.currentLevel
+				    .getLine(i).getSpikes()[j];
+			    g2.setColor(CurrentLevelHolder.SpikesColor);
+			    g2.fillRect(
+				    (int) (xline + (s.getOffset() * widthpx)),
+				    (int) (yline + (s.getSide() ? -heightpx
+					    : heightpx)),
+				    (int) (s.getWidth() * widthpx),
+				    (int) heightpx);
 
+			} catch (Exception e) {
+			}
+		    }
+		} catch (Exception e) {
 		}
-
 	    }
 	} catch (Exception e) {
 	}
