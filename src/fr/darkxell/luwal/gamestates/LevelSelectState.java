@@ -9,6 +9,7 @@ import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.mechanics.levels.Beginning_l1;
+import fr.darkxell.luwal.mechanics.levels.Reactor_l2;
 import fr.darkxell.luwal.mechanics.levels.Testlevel;
 import fr.darkxell.luwal.utility.ImgRessources;
 import fr.darkxell.luwal.utility.KeysConfig;
@@ -193,6 +194,9 @@ public class LevelSelectState extends DState {
 			} else if (levelselected == 1 && leveltypeselected == LEVELTYPE_CLASSIC) {
 				DisplayLine.prepareRotativeDash();
 				Launcher.gamestate = new PlayState(new Beginning_l1());
+			} else if (levelselected == 2 && leveltypeselected == LEVELTYPE_CLASSIC) {
+				DisplayLine.prepareRotativeDash();
+				Launcher.gamestate = new PlayState(new Reactor_l2());
 			}
 
 		}
