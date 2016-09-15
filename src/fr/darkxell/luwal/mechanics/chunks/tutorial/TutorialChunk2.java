@@ -1,4 +1,4 @@
-package fr.darkxell.luwal.mechanics.chunks;
+package fr.darkxell.luwal.mechanics.chunks.tutorial;
 
 import fr.darkxell.luwal.mechanics.Chunk;
 

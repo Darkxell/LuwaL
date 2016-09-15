@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
+import fr.darkxell.luwal.mechanics.levels.Beginning_l1;
 import fr.darkxell.luwal.mechanics.levels.Testlevel;
 import fr.darkxell.luwal.utility.ImgRessources;
 import fr.darkxell.luwal.utility.KeysConfig;
@@ -15,7 +16,9 @@ import fr.darkxell.luwal.utility.Palette;
 
 public class LevelSelectState extends DState {
 
+	/** The index of level selected. Starts at one. */
 	private int levelselected = 1;
+	/** The level type selected. */
 	private int leveltypeselected = 1;
 	private static final int LEVELTYPE_TUTORIAL = 0;
 	private static final int LEVELTYPE_CLASSIC = 1;
@@ -147,7 +150,7 @@ public class LevelSelectState extends DState {
 			DisplayLine.prepareRotativeDash();
 			Launcher.gamestate = new MenuState(false);
 		}
-
+		// up and down gestion to change the level type
 		if (e.getKeyCode() == KeysConfig.up) {
 			if (leveltypeselected <= LEVELTYPE_TUTORIAL)
 				leveltypeselected = LEVELTYPE_SET;
@@ -157,8 +160,7 @@ public class LevelSelectState extends DState {
 			levelnameopacity = 0;
 			leveldescopacity = 0;
 			DisplayLine.prepareRotativeDash();
-		}
-		if (e.getKeyCode() == KeysConfig.down) {
+		} else if (e.getKeyCode() == KeysConfig.down) {
 			if (leveltypeselected >= LEVELTYPE_SET)
 				leveltypeselected = LEVELTYPE_TUTORIAL;
 			else
@@ -167,32 +169,30 @@ public class LevelSelectState extends DState {
 			levelnameopacity = 0;
 			leveldescopacity = 0;
 			DisplayLine.prepareRotativeDash();
-		}
-
-		if (e.getKeyCode() == KeysConfig.left) {
-
+			// Change the level number.
+		} else if (e.getKeyCode() == KeysConfig.left && leveltypeselected == LEVELTYPE_CLASSIC) {
 			if (levelselected > 1) {
 				levelselected--;
 				levelnameopacity = 0;
 				leveldescopacity = 0;
 				DisplayLine.prepareRotativeDash();
 			}
-
-		}
-		if (e.getKeyCode() == KeysConfig.right) {
-
+		} else if (e.getKeyCode() == KeysConfig.right) {
 			if (levelselected < 9 && leveltypeselected == LEVELTYPE_CLASSIC) {
 				levelselected++;
 				levelnameopacity = 0;
 				leveldescopacity = 0;
 				DisplayLine.prepareRotativeDash();
 			}
-
 		}
+		// open the levels if the player has pressed enter.
 		if (e.getKeyCode() == KeysConfig.enter || e.getKeyCode() == KeysConfig.enter2) {
 			if (levelselected == 1 && leveltypeselected == LEVELTYPE_TUTORIAL) {
 				DisplayLine.prepareRotativeDash();
 				Launcher.gamestate = new PlayState(new Testlevel());
+			} else if (levelselected == 1 && leveltypeselected == LEVELTYPE_CLASSIC) {
+				DisplayLine.prepareRotativeDash();
+				Launcher.gamestate = new PlayState(new Beginning_l1());
 			}
 
 		}

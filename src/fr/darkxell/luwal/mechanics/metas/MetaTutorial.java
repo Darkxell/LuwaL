@@ -4,8 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import fr.darkxell.luwal.mechanics.Chunk;
 import fr.darkxell.luwal.mechanics.LevelMeta;
-import fr.darkxell.luwal.mechanics.chunks.TutorialChunk;
-import fr.darkxell.luwal.mechanics.chunks.TutorialChunk2;
+import fr.darkxell.luwal.mechanics.chunks.tutorial.TutorialChunk;
+import fr.darkxell.luwal.mechanics.chunks.tutorial.TutorialChunk2;
 
 public class MetaTutorial extends LevelMeta {
 

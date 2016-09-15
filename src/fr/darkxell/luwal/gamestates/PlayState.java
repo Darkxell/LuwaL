@@ -1,6 +1,8 @@
 package fr.darkxell.luwal.gamestates;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
@@ -14,7 +16,10 @@ import fr.darkxell.luwal.utility.Palette;
 /** The state where the player actually plays the game. */
 public class PlayState extends DState {
 
+	/** The level object being played. */
 	private Level level;
+	/** Timer that counts how much time the player survived on this level. */
+	private int timesec = 0;
 
 	/** Builds a new playable state using a level. */
 	public PlayState(Level level) {
@@ -25,6 +30,9 @@ public class PlayState extends DState {
 	public void update() {
 		DisplayLine.update();
 		level.update();
+		++timesec;
+		// If the player has died, level.killed is set to true.
+		// => End this state.
 		if (level.killed) {
 			DisplayLine.prepareRotativeDash();
 			Launcher.gamestate = new LevelSelectState();
@@ -40,6 +48,18 @@ public class PlayState extends DState {
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
 		DisplayLine.print(g2d);
+		// Displays the time.
+		g2d.setColor( level.meta.getLineColor() );
+		g2d.setFont(Palette.sheeping_dogs_small);
+		String time = "" + timesec/100;
+		int height = 80, width = g2d.getFontMetrics().stringWidth(time) + 40;
+		g2d.fillRect(buffer.getWidth() - width, 0, width, height);
+		g2d.fill(new Polygon(
+				new int[] { buffer.getWidth() - width - height, buffer.getWidth() - width, buffer.getWidth() - width },
+				new int[] { 0, 0, height }, 3));
+		g2d.setColor(level.meta.getBackgroundColor());
+		g2d.drawString(time, buffer.getWidth() - width + 20, height - 10);
+		
 		// return
 		g2d.dispose();
 		return buffer;
