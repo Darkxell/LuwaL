@@ -10,7 +10,7 @@ import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.mechanics.levels.Beginning_l1;
 import fr.darkxell.luwal.mechanics.levels.Reactor_l2;
-import fr.darkxell.luwal.mechanics.levels.Testlevel;
+import fr.darkxell.luwal.mechanics.levels.Tutorial;
 import fr.darkxell.luwal.utility.ImgRessources;
 import fr.darkxell.luwal.utility.KeysConfig;
 import fr.darkxell.luwal.utility.Palette;
@@ -52,8 +52,7 @@ public class LevelSelectState extends DState {
 
 	@Override
 	public BufferedImage getPrint() {
-		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(),
-				BufferedImage.TYPE_4BYTE_ABGR);
+		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Background and line
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
@@ -65,7 +64,8 @@ public class LevelSelectState extends DState {
 		String leveldisplay = "";
 		String levelname = "";
 		String leveldescription = "";
-		switch (leveltypeselected) {
+		switch (leveltypeselected) { // TODO : store this in a meta file
+										// somewhere?
 		case LEVELTYPE_TUTORIAL:
 			leveldisplay = "Tutorial";
 			levelname = "Tutorial stage";
@@ -124,8 +124,7 @@ public class LevelSelectState extends DState {
 			break;
 
 		}
-		g2d.drawString(leveldisplay, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldisplay) / 2,
-				buffer.getHeight() / 4);
+		g2d.drawString(leveldisplay, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldisplay) / 2, buffer.getHeight() / 4);
 		g2d.setColor(new Color(200, 200, 200, levelnameopacity));
 		g2d.setFont(Palette.sheeping_dogs_medium);
 		if (levelselected > 2)
@@ -134,8 +133,7 @@ public class LevelSelectState extends DState {
 				buffer.getHeight() / 1.7f - levelnameoffset);
 		g2d.setColor(new Color(200, 200, 200, leveldescopacity));
 		g2d.setFont(Palette.sheeping_dogs_tiny);
-		g2d.drawString(leveldescription, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldescription) / 2,
-				buffer.getHeight() / 1.5f);
+		g2d.drawString(leveldescription, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldescription) / 2, buffer.getHeight() / 1.5f);
 		// back button
 		g2d.setFont(Palette.sheeping_dogs_smaller);
 		g2d.setColor(new Color(200, 200, 200, 100));
@@ -190,7 +188,7 @@ public class LevelSelectState extends DState {
 		if (e.getKeyCode() == KeysConfig.enter || e.getKeyCode() == KeysConfig.enter2) {
 			if (levelselected == 1 && leveltypeselected == LEVELTYPE_TUTORIAL) {
 				DisplayLine.prepareRotativeDash();
-				Launcher.gamestate = new PlayState(new Testlevel());
+				Launcher.gamestate = new PlayState(new Tutorial());
 			} else if (levelselected == 1 && leveltypeselected == LEVELTYPE_CLASSIC) {
 				DisplayLine.prepareRotativeDash();
 				Launcher.gamestate = new PlayState(new Beginning_l1());

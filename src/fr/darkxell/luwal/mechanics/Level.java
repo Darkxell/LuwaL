@@ -1,8 +1,12 @@
 package fr.darkxell.luwal.mechanics;
 
+import fr.darkxell.luwal.main.Meta;
+
 /** A group of chunks that forms a playable level. */
 public class Level {
 
+	/** The level ID. */
+	protected int levelID = Meta.ID_DEFAULT;
 	/** The particles in this level. */
 	private Particle[] particles;
 	/** The chunks of this level. */
@@ -11,15 +15,22 @@ public class Level {
 	protected int height;
 	/** The player in this level. */
 	private Player player = new Player(this);
-	/** The meta of the level. */
+	/**
+	 * The meta of the level. Can be changed at anytime, even tho this is not
+	 * recommended.
+	 */
 	public LevelMeta meta;
-	/** is true if the player has failed in this stage. */
+	/** Is true if the player has failed in this stage. */
 	public boolean killed = false;
 
 	protected Level(LevelMeta meta) {
 		this.meta = meta;
 	}
 
+	/**
+	 * Creates a new playable level. Chunks will be generated procedurally from
+	 * the specified meta.
+	 */
 	public Level(Chunk[] data, LevelMeta meta) {
 		this.meta = meta;
 		this.chunks = data;
@@ -75,6 +86,11 @@ public class Level {
 		System.arraycopy(chunks, 0, chunks2, 0, chunks.length);
 		chunks2[chunks.length] = toAdd;
 		this.chunks = chunks2;
+	}
+
+	/** Returns the ID of the level. */
+	public int getLevelID() {
+		return this.levelID;
 	}
 
 }

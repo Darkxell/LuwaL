@@ -11,6 +11,7 @@ public class Beginning_l1 extends Level{
 		super(Meta.beginning);
 		super.chunks = new Chunk[] { new StartChunk(9) };
 		super.height = chunks[0].getHeight();
+		super.levelID = Meta.ID_SET1;
 	}
 	
 }

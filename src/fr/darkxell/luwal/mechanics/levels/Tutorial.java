@@ -5,12 +5,13 @@ import fr.darkxell.luwal.mechanics.Chunk;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.mechanics.chunks.StartChunk;
 
-public class Testlevel extends Level {
+public class Tutorial extends Level {
 
-	public Testlevel() {
+	public Tutorial() {
 		super(Meta.tutorial);
 		super.chunks = new Chunk[] { new StartChunk(9) };
 		super.height = chunks[0].getHeight();
+		super.levelID = Meta.ID_TUTORIAL;
 	}
 
 }

@@ -34,31 +34,29 @@ public class PlayState extends DState {
 		// => End this state.
 		if (level.killed) {
 			DisplayLine.prepareRotativeDash();
-			Launcher.gamestate = new LevelSelectState();
+			Launcher.gamestate = new GameOverState(this.level, (double) (timesec) / 100);
 		}
 	}
 
 	@Override
 	public BufferedImage getPrint() {
-		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(),
-				BufferedImage.TYPE_4BYTE_ABGR);
+		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Background and line display
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
 		DisplayLine.print(g2d);
 		// Displays the time.
-		g2d.setColor( level.meta.getLineColor() );
+		g2d.setColor(level.meta.getLineColor());
 		g2d.setFont(Palette.sheeping_dogs_small);
-		String time = "" + timesec/100;
+		String time = "" + timesec / 100;
 		int height = 80, width = g2d.getFontMetrics().stringWidth(time) + 40;
 		g2d.fillRect(buffer.getWidth() - width, 0, width, height);
-		g2d.fill(new Polygon(
-				new int[] { buffer.getWidth() - width - height, buffer.getWidth() - width, buffer.getWidth() - width },
+		g2d.fill(new Polygon(new int[] { buffer.getWidth() - width - height, buffer.getWidth() - width, buffer.getWidth() - width },
 				new int[] { 0, 0, height }, 3));
 		g2d.setColor(level.meta.getBackgroundColor());
 		g2d.drawString(time, buffer.getWidth() - width + 20, height - 10);
-		
+
 		// return
 		g2d.dispose();
 		return buffer;
@@ -70,7 +68,7 @@ public class PlayState extends DState {
 			this.level.getPlayer().press();
 		if (e.getKeyCode() == KeysConfig.back) {
 			DisplayLine.prepareRotativeDash();
-			Launcher.gamestate = new LevelSelectState();
+			Launcher.gamestate = new GameOverState(this.level, (double) (timesec) / 100);
 		}
 
 	}
