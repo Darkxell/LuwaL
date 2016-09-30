@@ -57,7 +57,7 @@ public class LevelSelectState extends DState {
 		// Background and line
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d);
+		DisplayLine.print(g2d,null);
 		// Levels
 		g2d.setColor(Palette.LIGHT_GREY);
 		g2d.setFont(Palette.sheeping_dogs_big);

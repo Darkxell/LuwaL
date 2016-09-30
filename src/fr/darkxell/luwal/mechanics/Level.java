@@ -1,5 +1,8 @@
 package fr.darkxell.luwal.mechanics;
 
+import java.awt.Graphics2D;
+
+import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.main.Meta;
 
 /** A group of chunks that forms a playable level. */
@@ -50,7 +53,53 @@ public class Level {
 		this.player.update();
 		if (this.player.getX() > this.getlength() - 100)
 			this.addchunk(this.meta.getRandomPattern(this.player.getX()));
+	}
 
+	/**
+	 * Displays this level on the line. <br/>
+	 * Note that the parameters are automatically passed by the DisplayLine
+	 * object. The Graphics object is transformed when parsed from the
+	 * displayLine object, meaning that this method shouldn't be called from
+	 * anywhere else than the DisplayLine object.
+	 */
+	public void display(Graphics2D g2, int rectheight, int rectY, int widthpx) {
+
+		try {
+
+			int framewidth = Launcher.gameframe.getWidth();
+			double heightpx = (double) (rectheight) / this.getHeight();
+
+			// Draws the player
+
+			if (!killed) {
+
+				g2.setColor(this.meta.getPlayerGhostColor());
+				g2.fillRect(framewidth / 3, rectY - (rectheight / 2) + (int) (this.getPlayer().getY() * heightpx),
+						(int) heightpx, (int) heightpx);
+
+				g2.setColor(this.meta.getPlayerColor());
+				g2.fillRect(framewidth / 3, (int) (rectY - (rectheight / 2)
+						+ ((this.getPlayer().isSliding ? (this.getPlayer().getGravity() ? this.getPlayer().getY() - 2
+								: this.getPlayer().getY() + 2) : this.getPlayer().getY()) * heightpx)),
+						(int) heightpx, (int) heightpx);
+
+			}
+			// Draws the level
+
+			for (int i = (int) this.getPlayer().getX() - 30; i < (int) this.getPlayer().getX() + 60; i++) {
+				for (int j = 0; j < this.getHeight(); j++) {
+					int xblock = (int) ((framewidth / 3) + ((double) i * widthpx)
+							- ((double) this.getPlayer().getX() * widthpx));
+					int yblock = (int) (rectY + (j * heightpx));
+					g2.setColor(this.meta.getLevelColor());
+					if (this.getBlockAt(i, j) == Block.BLOCK_SOLID)
+						g2.fillRect(xblock, yblock - 2 - (rectheight / 2), widthpx + 2, (int) heightpx + 4);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/** Returns the height of this level, in blocks. */

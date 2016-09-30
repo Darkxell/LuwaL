@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
+import fr.darkxell.luwal.main.Meta;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.utility.KeysConfig;
 import fr.darkxell.luwal.utility.Palette;
@@ -46,7 +47,7 @@ public class GameOverState extends DState {
 		// Displays the background and
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d);
+		DisplayLine.print(g2d,from);
 		// Displays the death pannel.
 		// counter from 0 to 50 (half a sec animation).
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
@@ -81,7 +82,7 @@ public class GameOverState extends DState {
 			Launcher.gamestate = new LevelSelectState();
 		} else if (e.getKeyCode() == KeysConfig.enter || e.getKeyCode() == KeysConfig.enter2) {
 			DisplayLine.prepareRotativeDash();
-			Launcher.gamestate = new LevelSelectState();
+			Launcher.gamestate = new PlayState(Meta.getNewLevelFromID(from.getLevelID()));
 		}
 	}
 

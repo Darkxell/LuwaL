@@ -74,7 +74,7 @@ public class MenuState extends DState {
 		// Background and line
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d);
+		DisplayLine.print(g2d,null);
 		// Game name
 		g2d.setFont(Palette.sheeping_dogs_big);
 		g2d.setColor(Palette.LIGHT_GREY);

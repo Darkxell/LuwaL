@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 
 import fr.darkxell.luwal.gamestates.PlayState;
-import fr.darkxell.luwal.mechanics.Block;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.utility.Palette;
 
@@ -36,7 +35,7 @@ public abstract class DisplayLine {
 	private static boolean rotatorLaner = true;
 
 	/** Gets a graphic object and prints the line on it. */
-	public static void print(Graphics g) {
+	public static void print(Graphics g, Level l) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(Palette.BACKGROUND_GREY);
 		Rectangle r = new Rectangle(-(Launcher.gameframe.getWidth() / 2), (rectY - (rectheight / 2)),
@@ -48,8 +47,8 @@ public abstract class DisplayLine {
 		g2.transform(t);
 		g2.fill(r);
 		// Draws the level on the line rectangle.
-		if (Launcher.gamestate instanceof PlayState)
-			displaylevel(g2);
+		if (l != null)
+			l.display(g2, rectheight, rectY, widthpx);
 
 		g2.setTransform(old);
 
@@ -101,45 +100,7 @@ public abstract class DisplayLine {
 		}
 	}
 
-	private static void displaylevel(Graphics2D g2) {
-
-		try {
-			PlayState ps = (PlayState) Launcher.gamestate;
-			Level l = ps.getLevel();
-			int framewidth = Launcher.gameframe.getWidth();
-			double heightpx = (double) (rectheight) / l.getHeight();
-
-			// Draws the player (in black for now)
-
-			g2.setColor(l.meta.getPlayerGhostColor());
-			g2.fillRect(framewidth / 3, rectY - (rectheight / 2) + (int) (l.getPlayer().getY() * heightpx),
-					(int) heightpx, (int) heightpx);
-
-			g2.setColor(l.meta.getPlayerColor());
-			g2.fillRect(framewidth / 3,
-					(int) (rectY - (rectheight / 2)
-							+ ((l.getPlayer().isSliding
-									? (l.getPlayer().getGravity() ? l.getPlayer().getY() - 2 : l.getPlayer().getY() + 2)
-									: l.getPlayer().getY()) * heightpx)),
-					(int) heightpx, (int) heightpx);
-
-			// Draws the level
-
-			for (int i = (int) l.getPlayer().getX() - 30; i < (int) l.getPlayer().getX() + 60; i++) {
-				for (int j = 0; j < l.getHeight(); j++) {
-					int xblock = (int) ((framewidth / 3) + ((double) i * widthpx)
-							- ((double) l.getPlayer().getX() * widthpx));
-					int yblock = (int) (rectY + (j * heightpx));
-					g2.setColor(l.meta.getLevelColor());
-					if (l.getBlockAt(i, j) == Block.BLOCK_SOLID)
-						g2.fillRect(xblock, yblock - 2 - (rectheight / 2), widthpx + 2, (int) heightpx + 4);
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/** Prepares a rotation dash. */
 	public static void prepareRotativeDash() {

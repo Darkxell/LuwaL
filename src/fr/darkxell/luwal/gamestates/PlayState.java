@@ -45,7 +45,7 @@ public class PlayState extends DState {
 		// Background and line display
 		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d);
+		DisplayLine.print(g2d,level);
 		// Displays the time.
 		g2d.setColor(level.meta.getLineColor());
 		g2d.setFont(Palette.sheeping_dogs_small);

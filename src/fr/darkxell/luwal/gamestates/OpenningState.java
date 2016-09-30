@@ -63,7 +63,7 @@ public class OpenningState extends DState {
 		g2d.fillRect(0, (buffer.getHeight() - height) / 2, buffer.getWidth(), height);
 		// Makes the line appears
 		if (counter > 305) {
-			DisplayLine.print(g2d);
+			DisplayLine.print(g2d,null);
 			// Gametitle
 			g2d.setFont(Palette.sheeping_dogs_big);
 			int titleopacity = (counter - 300) * 3;
