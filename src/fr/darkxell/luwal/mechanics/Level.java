@@ -48,6 +48,7 @@ public class Level {
 	/** updates the player and particles of this level. */
 	public void update() {
 		this.player.update();
+		this.meta.update();
 		if (this.player.getX() > this.getlength() - 100)
 			this.addchunk(this.meta.getRandomPattern(this.player.getX()));
 	}

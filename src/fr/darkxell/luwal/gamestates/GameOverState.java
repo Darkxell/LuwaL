@@ -44,18 +44,18 @@ public class GameOverState extends DState {
 				BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Displays the background and
-		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
+		g2d.setColor(from.meta.getBackgroundColor());
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d,from);
+		DisplayLine.print(g2d,from,from.meta.getLineColor());
 		// Displays the death pannel.
 		// counter from 0 to 50 (half a sec animation).
-		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
+		g2d.setColor(from.meta.getBackgroundColor());
 		int pos = counter > 50 ? buffer.getWidth() / 3 : buffer.getWidth() / 150 * counter;
 		g2d.fill(new Polygon(
 				new int[] { buffer.getWidth() - pos - 20, buffer.getWidth() - pos, buffer.getWidth() - pos * 2,
 						buffer.getWidth() - pos * 2 - 20 },
 				new int[] { 0, 0, buffer.getHeight(), buffer.getHeight() }, 4));
-		g2d.setColor(Palette.BACKGROUND_GREY);
+		g2d.setColor(from.meta.getLineColor());
 		g2d.fill(
 				new Polygon(
 						new int[] { buffer.getWidth() - pos, buffer.getWidth(), buffer.getWidth(),
@@ -63,7 +63,7 @@ public class GameOverState extends DState {
 						new int[] { 0, 0, buffer.getHeight(), buffer.getHeight() }, 4));
 		// Displays the time
 		if (counter > 50) {
-			g2d.setColor(Palette.LIGHT_GREY);
+			g2d.setColor(from.meta.getPlayerColor());
 			g2d.setFont(Palette.sheeping_dogs_medium);
 			g2d.drawString("Time : " + time, pos * 2 - 20, buffer.getHeight() / 5 * 4);
 			g2d.drawString("Game Over", pos * 2 + 10, buffer.getHeight() / 3);

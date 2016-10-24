@@ -43,9 +43,9 @@ public class PlayState extends DState {
 		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Background and line display
-		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
+		g2d.setColor(level.meta.getBackgroundColor());
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d,level);
+		DisplayLine.print(g2d,level,level.meta.getLineColor());
 		// Displays the time.
 		g2d.setColor(level.meta.getLineColor());
 		g2d.setFont(Palette.sheeping_dogs_small);

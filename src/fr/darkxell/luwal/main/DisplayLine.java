@@ -1,5 +1,6 @@
 package fr.darkxell.luwal.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -33,11 +34,16 @@ public abstract class DisplayLine {
 	private static boolean heightLaner = true;
 	private static boolean sizeLaner = true;
 	private static boolean rotatorLaner = true;
-
+	
 	/** Gets a graphic object and prints the line on it. */
 	public static void print(Graphics g, Level l) {
+		print(g,l,Palette.BACKGROUND_GREY);
+	}
+	
+	/** Gets a graphic object and prints the line on it. */
+	public static void print(Graphics g, Level l,Color color) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Palette.BACKGROUND_GREY);
+		g2.setColor(color);
 		Rectangle r = new Rectangle(-(Launcher.gameframe.getWidth() / 2), (rectY - (rectheight / 2)),
 				Launcher.gameframe.getWidth() * 2, rectheight);
 

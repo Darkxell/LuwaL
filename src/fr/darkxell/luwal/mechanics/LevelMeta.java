@@ -56,6 +56,15 @@ public abstract class LevelMeta {
 	 */
 	public abstract Chunk getRandomPattern(double playerposition);
 
+	/**
+	 * Update method called each time a level linked to it is updated. By
+	 * default does nothing, can be overrided to provide more contros to
+	 * extended levelmetas.
+	 */
+	protected void update() {
+
+	}
+
 	public double getScrollSpeed() {
 		return scrollspeed;
 	}
@@ -83,6 +92,5 @@ public abstract class LevelMeta {
 	public Color getPlayerGhostColor() {
 		return playerghost;
 	}
-	
-	
+
 }
