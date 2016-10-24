@@ -11,7 +11,6 @@ public class Tutorial extends Level {
 		super(Meta.tutorial);
 		super.chunks = new Chunk[] { new StartChunk(9) };
 		super.height = chunks[0].getHeight();
-		super.levelID = Meta.ID_TUTORIAL;
 	}
 
 }

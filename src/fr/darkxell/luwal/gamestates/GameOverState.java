@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
-import fr.darkxell.luwal.main.Meta;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.utility.KeysConfig;
 import fr.darkxell.luwal.utility.Palette;
@@ -82,7 +81,11 @@ public class GameOverState extends DState {
 			Launcher.gamestate = new LevelSelectState();
 		} else if (e.getKeyCode() == KeysConfig.enter || e.getKeyCode() == KeysConfig.enter2) {
 			DisplayLine.prepareRotativeDash();
-			Launcher.gamestate = new PlayState(Meta.getNewLevelFromID(from.getLevelID()));
+			try {
+				Launcher.gamestate = new PlayState(from.getClass().newInstance());
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 

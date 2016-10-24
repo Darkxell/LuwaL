@@ -23,7 +23,8 @@ public class LevelSelectState extends DState {
 	private int leveltypeselected = 1;
 	private static final int LEVELTYPE_TUTORIAL = 0;
 	private static final int LEVELTYPE_CLASSIC = 1;
-	private static final int LEVELTYPE_SET = 2;
+	private static final int LEVELTYPE_EXTREME = 2;
+	private static final int LEVELTYPE_SET = 3;
 
 	private int levelnameopacity = 0;
 	private int leveldescopacity = 0;
@@ -116,6 +117,11 @@ public class LevelSelectState extends DState {
 				leveldescription = "Seems like something strange happened";
 				break;
 			}
+			break;
+		case LEVELTYPE_EXTREME:
+			leveldisplay = "Extreme Stages";
+			levelname = "Work in progress";
+			leveldescription = "Still in developpement, come back later";
 			break;
 		case LEVELTYPE_SET:
 			leveldisplay = "Set Stages";

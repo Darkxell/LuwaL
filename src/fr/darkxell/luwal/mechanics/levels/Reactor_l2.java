@@ -11,7 +11,6 @@ public class Reactor_l2 extends Level {
 		super(Meta.reactor);
 		super.chunks = new Chunk[] { new StartChunk(9) };
 		super.height = chunks[0].getHeight();
-		super.levelID = Meta.ID_SET2;
 	}
 
 }

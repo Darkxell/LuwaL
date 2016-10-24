@@ -3,13 +3,10 @@ package fr.darkxell.luwal.mechanics;
 import java.awt.Graphics2D;
 
 import fr.darkxell.luwal.main.Launcher;
-import fr.darkxell.luwal.main.Meta;
 
 /** A group of chunks that forms a playable level. */
 public class Level {
 
-	/** The level ID. */
-	protected int levelID = Meta.ID_DEFAULT;
 	/** The particles in this level. */
 	private Particle[] particles;
 	/** The chunks of this level. */
@@ -135,11 +132,6 @@ public class Level {
 		System.arraycopy(chunks, 0, chunks2, 0, chunks.length);
 		chunks2[chunks.length] = toAdd;
 		this.chunks = chunks2;
-	}
-
-	/** Returns the ID of the level. */
-	public int getLevelID() {
-		return this.levelID;
 	}
 
 }
