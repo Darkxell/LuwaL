@@ -1,5 +1,6 @@
 package fr.darkxell.luwal.main;
 
+import fr.darkxell.luwal.utility.AnimatedColor;
 import fr.darkxell.luwal.utility.FPSmeter;
 import fr.darkxell.luwal.utility.FinalValues;
 
@@ -38,6 +39,7 @@ public class Updater {
 				for (;;) {
 					updatestarttime = System.currentTimeMillis();
 					Launcher.gamestate.update();
+					AnimatedColor.updateAllColors();
 					while (System.currentTimeMillis() < updatestarttime + (1000 / FinalValues.UPS)) {
 						try {
 							Thread.sleep(1);

@@ -10,7 +10,7 @@ import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.utility.KeysConfig;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.FontsHolder;
 
 /** The state where the player actually plays the game. */
 public class PlayState extends DState {
@@ -48,7 +48,7 @@ public class PlayState extends DState {
 		DisplayLine.print(g2d,level,level.meta.getLineColor());
 		// Displays the time.
 		g2d.setColor(level.meta.getLineColor());
-		g2d.setFont(Palette.sheeping_dogs_small);
+		g2d.setFont(FontsHolder.sheeping_dogs_small);
 		String time = "" + timesec / 100;
 		int height = 80, width = g2d.getFontMetrics().stringWidth(time) + 40;
 		g2d.fillRect(buffer.getWidth() - width, 0, width, height);

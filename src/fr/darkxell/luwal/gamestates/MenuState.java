@@ -8,9 +8,10 @@ import java.awt.image.BufferedImage;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
+import fr.darkxell.luwal.utility.AnimatedColor;
 import fr.darkxell.luwal.utility.FinalValues;
 import fr.darkxell.luwal.utility.KeysConfig;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.FontsHolder;
 
 public class MenuState extends DState {
 
@@ -72,19 +73,19 @@ public class MenuState extends DState {
 				BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Background and line
-		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
+		g2d.setColor(AnimatedColor.BACKGROUND_GREY_DARK.getCurrentColor());
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
 		DisplayLine.print(g2d,null);
 		// Game name
-		g2d.setFont(Palette.sheeping_dogs_big);
-		g2d.setColor(Palette.LIGHT_GREY);
+		g2d.setFont(FontsHolder.sheeping_dogs_big);
+		g2d.setColor(AnimatedColor.LIGHT_GREY.getCurrentColor());
 		int additionalheight = textgoesup ? buffer.getHeight() / 100 * titleheight : buffer.getHeight() / 100 * 25;
 		g2d.drawString(FinalValues.gamename,
 				buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(FinalValues.gamename) / 2,
 				buffer.getHeight() / 2 - additionalheight);
 		// Menu options
 		g2d.setColor(new Color(200, 200, 200, 10 * titleheight));
-		g2d.setFont(Palette.sheeping_dogs_small);
+		g2d.setFont(FontsHolder.sheeping_dogs_small);
 		int baseheight = buffer.getHeight() / 2;
 		g2d.drawString("Play", buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth("Play") / 2, baseheight);
 		g2d.drawString("Tutorial", buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth("Tutorial") / 2,
@@ -97,7 +98,7 @@ public class MenuState extends DState {
 		g2d.drawString(">", buffer.getWidth() / 2 - 200 - selectarrowoffset, baseheight + arrowheight);
 		g2d.drawString("<", buffer.getWidth() / 2 + 180 + selectarrowoffset, baseheight + arrowheight);
 		// back button
-		g2d.setFont(Palette.sheeping_dogs_smaller);
+		g2d.setFont(FontsHolder.sheeping_dogs_smaller);
 		g2d.setColor(new Color(200, 200, 200, 100));
 		g2d.drawString("<<< " + KeysConfig.getKeyName(KeysConfig.back), 20, 40);
 

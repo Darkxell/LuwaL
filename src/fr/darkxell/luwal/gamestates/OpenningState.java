@@ -11,7 +11,7 @@ import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.utility.FinalValues;
 import fr.darkxell.luwal.utility.KeysConfig;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.FontsHolder;
 
 public class OpenningState extends DState {
 
@@ -65,18 +65,18 @@ public class OpenningState extends DState {
 		if (counter > 305) {
 			DisplayLine.print(g2d,null);
 			// Gametitle
-			g2d.setFont(Palette.sheeping_dogs_big);
+			g2d.setFont(FontsHolder.sheeping_dogs_big);
 			int titleopacity = (counter - 300) * 3;
 			g2d.setColor(new Color(200, 200, 200, titleopacity > 255 ? 255 : titleopacity));
 			g2d.drawString(FinalValues.gamename,
 					buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(FinalValues.gamename) / 2,
 					buffer.getHeight() / 2);
 			// back button
-			g2d.setFont(Palette.sheeping_dogs_smaller);
+			g2d.setFont(FontsHolder.sheeping_dogs_smaller);
 			g2d.setColor(new Color(200, 200, 200, 100));
 			g2d.drawString("<<< " + KeysConfig.getKeyName(KeysConfig.back), 20, 40);
 			// Press enter text
-			g2d.setFont(Palette.sheeping_dogs_small);
+			g2d.setFont(FontsHolder.sheeping_dogs_small);
 			g2d.setColor(new Color(200, 200, 200, Math.abs(textflicker)));
 			String flickertext = "Press " + KeysConfig.getKeyName(KeysConfig.enter);
 			g2d.drawString(flickertext, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(flickertext) / 2,

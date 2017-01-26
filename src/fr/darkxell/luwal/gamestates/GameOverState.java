@@ -10,7 +10,7 @@ import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.mechanics.Level;
 import fr.darkxell.luwal.utility.KeysConfig;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.FontsHolder;
 
 /**
  * State of the game that appears on the player death or suicide at the end of a
@@ -64,7 +64,7 @@ public class GameOverState extends DState {
 		// Displays the time
 		if (counter > 50) {
 			g2d.setColor(from.meta.getPlayerColor());
-			g2d.setFont(Palette.sheeping_dogs_medium);
+			g2d.setFont(FontsHolder.sheeping_dogs_medium);
 			g2d.drawString("Time : " + time, pos * 2 - 20, buffer.getHeight() / 5 * 4);
 			g2d.drawString("Game Over", pos * 2 + 10, buffer.getHeight() / 3);
 

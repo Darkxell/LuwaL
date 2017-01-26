@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 
 import fr.darkxell.luwal.gamestates.PlayState;
 import fr.darkxell.luwal.mechanics.Level;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.AnimatedColor;
 
 /**
  * Static class that holds the line position and display methods to print it.
@@ -37,7 +37,7 @@ public abstract class DisplayLine {
 	
 	/** Gets a graphic object and prints the line on it. */
 	public static void print(Graphics g, Level l) {
-		print(g,l,Palette.BACKGROUND_GREY);
+		print(g,l,AnimatedColor.BACKGROUND_GREY.getCurrentColor());
 	}
 	
 	/** Gets a graphic object and prints the line on it. */

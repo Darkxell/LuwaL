@@ -13,7 +13,8 @@ import fr.darkxell.luwal.mechanics.levels.Reactor_l2;
 import fr.darkxell.luwal.mechanics.levels.Tutorial;
 import fr.darkxell.luwal.utility.ImgRessources;
 import fr.darkxell.luwal.utility.KeysConfig;
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.AnimatedColor;
+import fr.darkxell.luwal.utility.FontsHolder;
 
 public class LevelSelectState extends DState {
 
@@ -56,12 +57,12 @@ public class LevelSelectState extends DState {
 		BufferedImage buffer = new BufferedImage(Launcher.gameframe.getWidth(), Launcher.gameframe.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = (Graphics2D) buffer.getGraphics();
 		// Background and line
-		g2d.setColor(Palette.BACKGROUND_GREY_DARK);
+		g2d.setColor(AnimatedColor.BACKGROUND_GREY_DARK.getCurrentColor());
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
 		DisplayLine.print(g2d,null);
 		// Levels
-		g2d.setColor(Palette.LIGHT_GREY);
-		g2d.setFont(Palette.sheeping_dogs_big);
+		g2d.setColor(AnimatedColor.LIGHT_GREY.getCurrentColor());
+		g2d.setFont(FontsHolder.sheeping_dogs_big);
 		String leveldisplay = "";
 		String levelname = "";
 		String leveldescription = "";
@@ -132,16 +133,16 @@ public class LevelSelectState extends DState {
 		}
 		g2d.drawString(leveldisplay, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldisplay) / 2, buffer.getHeight() / 4);
 		g2d.setColor(new Color(200, 200, 200, levelnameopacity));
-		g2d.setFont(Palette.sheeping_dogs_medium);
+		g2d.setFont(FontsHolder.sheeping_dogs_medium);
 		if (levelselected > 2)
 			g2d.drawImage(ImgRessources.lock, buffer.getWidth() / 2 - 50, buffer.getHeight() / 3, 100, 100, null);
 		g2d.drawString(levelname, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(levelname) / 2,
 				buffer.getHeight() / 1.7f - levelnameoffset);
 		g2d.setColor(new Color(200, 200, 200, leveldescopacity));
-		g2d.setFont(Palette.sheeping_dogs_tiny);
+		g2d.setFont(FontsHolder.sheeping_dogs_tiny);
 		g2d.drawString(leveldescription, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldescription) / 2, buffer.getHeight() / 1.5f);
 		// back button
-		g2d.setFont(Palette.sheeping_dogs_smaller);
+		g2d.setFont(FontsHolder.sheeping_dogs_smaller);
 		g2d.setColor(new Color(200, 200, 200, 100));
 		g2d.drawString("<<< " + KeysConfig.getKeyName(KeysConfig.back), 20, 40);
 		// end

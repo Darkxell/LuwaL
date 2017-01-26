@@ -2,7 +2,7 @@ package fr.darkxell.luwal.mechanics;
 
 import java.awt.Color;
 
-import fr.darkxell.luwal.utility.Palette;
+import fr.darkxell.luwal.utility.AnimatedColor;
 
 /**
  * Describes all the meta stuff in a level.<br/>
@@ -32,23 +32,23 @@ public abstract class LevelMeta {
 	 */
 	protected double rotatespeed = 0.3d;
 	/** The background color of the level. */
-	protected Color background = Palette.BACKGROUND_GREY_DARK;
+	protected AnimatedColor background = AnimatedColor.BACKGROUND_GREY_DARK;
 	/** The line color in the level. */
-	protected Color line = Palette.BACKGROUND_GREY;
+	protected AnimatedColor line = AnimatedColor.BACKGROUND_GREY;
 	/** The color of the blocks in the level. */
-	protected Color level = Palette.BACKGROUND_GREY_DARK;
+	protected AnimatedColor level = AnimatedColor.BACKGROUND_GREY_DARK;
 	/**
 	 * The color of the active player in the level. This represents the solid
 	 * player object, used to calculate collisions.
 	 */
-	protected Color player = Palette.LIGHT_GREY;
+	protected AnimatedColor player = AnimatedColor.LIGHT_GREY;
 	/**
 	 * The player's ghost color. Appears where the player is going to reappears
 	 * after a holded ride. <br/>
 	 * <br/>
 	 * Note: should be close to the line color.
 	 */
-	protected Color playerghost = Palette.GHOST_GREY;
+	protected AnimatedColor playerghost = AnimatedColor.GHOST_GREY;
 
 	/**
 	 * Returns a random pattern usable by a level following this levelmeta at
@@ -74,23 +74,23 @@ public abstract class LevelMeta {
 	}
 
 	public Color getBackgroundColor() {
-		return background;
+		return background.getCurrentColor();
 	}
 
 	public Color getLineColor() {
-		return line;
+		return line.getCurrentColor();
 	}
 
 	public Color getLevelColor() {
-		return level;
+		return level.getCurrentColor();
 	}
 
 	public Color getPlayerColor() {
-		return player;
+		return player.getCurrentColor();
 	}
 
 	public Color getPlayerGhostColor() {
-		return playerghost;
+		return playerghost.getCurrentColor();
 	}
 
 }
