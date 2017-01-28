@@ -2,6 +2,7 @@ package fr.darkxell.luwal.mechanics;
 
 import java.awt.Color;
 
+import fr.darkxell.luwal.audio.Song;
 import fr.darkxell.luwal.utility.AnimatedColor;
 
 /**
@@ -49,6 +50,11 @@ public abstract class LevelMeta {
 	 * Note: should be close to the line color.
 	 */
 	protected AnimatedColor playerghost = AnimatedColor.GHOST_GREY;
+	/**
+	 * The level song. This song will be set as background music when a level
+	 * matching this meta start.
+	 */
+	protected Song levelSong;
 
 	/**
 	 * Returns a random pattern usable by a level following this levelmeta at
@@ -58,7 +64,7 @@ public abstract class LevelMeta {
 
 	/**
 	 * Update method called each time a level linked to it is updated. By
-	 * default does nothing, can be overrided to provide more contros to
+	 * default does nothing, can be overrided to provide more control to
 	 * extended levelmetas.
 	 */
 	protected void update() {
@@ -91,6 +97,10 @@ public abstract class LevelMeta {
 
 	public Color getPlayerGhostColor() {
 		return playerghost.getCurrentColor();
+	}
+
+	public Song getLevelSong() {
+		return this.levelSong;
 	}
 
 }

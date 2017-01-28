@@ -2,6 +2,7 @@ package fr.darkxell.luwal.mechanics.metas;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import fr.darkxell.luwal.audio.Song;
 import fr.darkxell.luwal.mechanics.Chunk;
 import fr.darkxell.luwal.mechanics.LevelMeta;
 import fr.darkxell.luwal.mechanics.chunks.tutorial.TutorialChunk;
@@ -12,6 +13,7 @@ public class MetaTutorial extends LevelMeta {
 	public MetaTutorial() {
 		super.rotatespeed = 0.1d;
 		super.scrollspeed = 0.1d;
+		super.levelSong = Song.ADVENTURES;
 	}
 
 	@Override

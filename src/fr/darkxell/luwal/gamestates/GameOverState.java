@@ -34,6 +34,8 @@ public class GameOverState extends DState {
 	@Override
 	public void update() {
 		DisplayLine.update();
+		if (counter == 0)
+			Launcher.soundManager.setBackgroundMusic(null);
 		++counter;
 	}
 
@@ -46,7 +48,7 @@ public class GameOverState extends DState {
 		// Displays the background and
 		g2d.setColor(from.meta.getBackgroundColor());
 		g2d.fillRect(0, 0, buffer.getWidth(), buffer.getWidth());
-		DisplayLine.print(g2d,from,from.meta.getLineColor());
+		DisplayLine.print(g2d, from, from.meta.getLineColor());
 		// Displays the death pannel.
 		// counter from 0 to 50 (half a sec animation).
 		g2d.setColor(from.meta.getBackgroundColor());

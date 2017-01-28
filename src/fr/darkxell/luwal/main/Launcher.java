@@ -1,5 +1,6 @@
 package fr.darkxell.luwal.main;
 
+import fr.darkxell.luwal.audio.SoundManager;
 import fr.darkxell.luwal.display.GameFrame;
 import fr.darkxell.luwal.gamestates.OpenningState;
 
@@ -18,12 +19,15 @@ public class Launcher {
 	 * the frame should display.
 	 */
 	public static DState gamestate = new OpenningState();
+	/** The sound manager for all the game. **/
+	public static SoundManager soundManager;
 
 	/** Main launching method. Launches the entire LuwaL project. */
 	public static void main(String[] args) {
-		
+
 		gameframe = new GameFrame();
-		
+		soundManager = new SoundManager();
+
 		@SuppressWarnings("unused")
 		Updater up = new Updater();
 

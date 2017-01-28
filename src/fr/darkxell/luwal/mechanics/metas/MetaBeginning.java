@@ -2,6 +2,7 @@ package fr.darkxell.luwal.mechanics.metas;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import fr.darkxell.luwal.audio.Song;
 import fr.darkxell.luwal.mechanics.Chunk;
 import fr.darkxell.luwal.mechanics.LevelMeta;
 import fr.darkxell.luwal.mechanics.chunks.beginning.ClassyChunk;
@@ -19,6 +20,7 @@ public class MetaBeginning extends LevelMeta {
 		super.line = AnimatedColor.BEGINNING_LINE;
 		super.player = AnimatedColor.BEGINNING_PLAYER;
 		super.playerghost = AnimatedColor.BEGINNING_GHOST;
+		super.levelSong = Song.BORN_SYNTHETIC;
 	}
 
 	@Override
