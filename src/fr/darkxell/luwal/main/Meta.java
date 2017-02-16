@@ -1,6 +1,7 @@
 package fr.darkxell.luwal.main;
 
 import fr.darkxell.luwal.mechanics.LevelMeta;
+import fr.darkxell.luwal.mechanics.metas.MetaAbsolution;
 import fr.darkxell.luwal.mechanics.metas.MetaBeginning;
 import fr.darkxell.luwal.mechanics.metas.MetaReactor;
 import fr.darkxell.luwal.mechanics.metas.MetaTutorial;
@@ -16,5 +17,7 @@ public class Meta {
 	public static LevelMeta beginning = new MetaBeginning();
 
 	public static LevelMeta reactor = new MetaReactor();
+	
+	public static LevelMeta absolution = new MetaAbsolution();
 
 }

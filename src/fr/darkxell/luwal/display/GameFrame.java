@@ -2,6 +2,7 @@ package fr.darkxell.luwal.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import fr.darkxell.luwal.main.Launcher;
 import fr.darkxell.luwal.utility.FinalValues;
+import fr.darkxell.luwal.utility.ImgRessources;
 
 public class GameFrame {
 
@@ -30,6 +32,9 @@ public class GameFrame {
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,
 				Toolkit.getDefaultToolkit().getScreenSize().height);
 		frame.setBackground(new Color(0, 0, 0, 0));
+		// sets the frame cursor
+		frame.setCursor(
+				Toolkit.getDefaultToolkit().createCustomCursor(ImgRessources.cursor, new Point(15, 15), "cursor"));
 		// configuring the canvas
 		this.canvas = new JPanel() {
 			private static final long serialVersionUID = 1L;

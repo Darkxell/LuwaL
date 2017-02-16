@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import fr.darkxell.luwal.audio.Song;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
@@ -39,6 +40,7 @@ public class PlayState extends DState {
 		// => End this state.
 		if (level.killed) {
 			DisplayLine.prepareRotativeDash();
+			Launcher.soundManager.playSound(Song.SOUND_DEATH);
 			Launcher.gamestate = new GameOverState(this.level, (double) (timesec) / 100);
 		}
 	}

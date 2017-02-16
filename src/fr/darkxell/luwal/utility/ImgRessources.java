@@ -21,5 +21,6 @@ public class ImgRessources {
 	}
 	
 	public static final BufferedImage lock = createImage("lock.png");
+	public static final BufferedImage cursor = createImage("cursor.png");
 
 }

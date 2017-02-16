@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import fr.darkxell.luwal.main.DState;
 import fr.darkxell.luwal.main.DisplayLine;
 import fr.darkxell.luwal.main.Launcher;
+import fr.darkxell.luwal.mechanics.levels.Absolution_l3;
 import fr.darkxell.luwal.mechanics.levels.Beginning_l1;
 import fr.darkxell.luwal.mechanics.levels.Reactor_l2;
 import fr.darkxell.luwal.mechanics.levels.Tutorial;
@@ -134,7 +135,7 @@ public class LevelSelectState extends DState {
 		g2d.drawString(leveldisplay, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(leveldisplay) / 2, buffer.getHeight() / 4);
 		g2d.setColor(new Color(200, 200, 200, levelnameopacity));
 		g2d.setFont(FontsHolder.sheeping_dogs_medium);
-		if (levelselected > 2)
+		if (levelselected > 3)
 			g2d.drawImage(ImgRessources.lock, buffer.getWidth() / 2 - 50, buffer.getHeight() / 3, 100, 100, null);
 		g2d.drawString(levelname, buffer.getWidth() / 2 - g2d.getFontMetrics().stringWidth(levelname) / 2,
 				buffer.getHeight() / 1.7f - levelnameoffset);
@@ -202,6 +203,9 @@ public class LevelSelectState extends DState {
 			} else if (levelselected == 2 && leveltypeselected == LEVELTYPE_CLASSIC) {
 				DisplayLine.prepareRotativeDash();
 				Launcher.gamestate = new PlayState(new Reactor_l2());
+			}else if (levelselected == 3 && leveltypeselected == LEVELTYPE_CLASSIC) {
+				DisplayLine.prepareRotativeDash();
+				Launcher.gamestate = new PlayState(new Absolution_l3());
 			}
 
 		}

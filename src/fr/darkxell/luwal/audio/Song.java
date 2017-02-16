@@ -28,7 +28,8 @@ public enum Song {
 	REMEMBER("remember.mp3"),
 	RINCE_AND_REPEAT("rincerepeat.mp3"),
 	SEVEN("seven.mp3"),
-	ULTRAVIOLET("ultraviolet.mp3");
+	ULTRAVIOLET("ultraviolet.mp3"),
+	SOUND_DEATH("death.mp3");
 
 	/** The filepath to the .mp3 file */
 	private String filepath;

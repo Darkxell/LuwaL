@@ -1,6 +1,5 @@
 package fr.darkxell.luwal.audio;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 
 import javax.sound.sampled.AudioSystem;
@@ -120,7 +119,9 @@ public class SoundManager implements Runnable {
 			@Override
 			public void run() {
 				try {
-					new Player(new FileInputStream(sound.getfilepath())).play();
+					ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+					InputStream is = classloader.getResourceAsStream(sound.getfilepath());
+					new Player(is).play();
 				} catch (Exception e) {
 					System.err.println("Sound couldn't be played : " + sound.getdipsplayname());
 					e.printStackTrace();
